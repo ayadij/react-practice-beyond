@@ -27,6 +27,8 @@ WebPack
 AJAX
 Axios
 JQuery
+React Router
+
 
 ====================================================================
 
@@ -290,10 +292,11 @@ npm install --save redux-promise
 
 
 
-
-
 ==============================================================
 
+SPA
+single page application
+just showing different sets of components instead of entirely different html pages
 
 ==============================================================
 
