@@ -211,6 +211,12 @@ SIMPLY:
 - the new satae flows into the new containers
 
 
+actions must always return a type
+convention is to create a single varaible that holds the action type
+import that variable into the action type. single source
+that way it is not a string.
+
+
 ==============================================================
 BINDING ACTION CREATORS
 
@@ -275,12 +281,15 @@ internal state, external props
 
 
 
+a list is an array of object
+snapsotsdssdasfdasdfsasdffdsadsfasdf
 
 
 
 
 
-
+REDUX PROMISE
+npm install --save redux-promise
 
 
 
