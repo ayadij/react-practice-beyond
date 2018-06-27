@@ -6,7 +6,7 @@ export default class SearchBar extends Component {
 
         this.state = {term: '' };
 
-        this.onInputChanges = this.onInputChanges.bind(this);
+        this.onInputChanges = this.onInputChanges.bind(this); //or bind with callback fat arrow function
     }
 
     onInputChanges(event) {
