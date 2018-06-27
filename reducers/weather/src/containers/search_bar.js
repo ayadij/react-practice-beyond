@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
 
 export default class SearchBar extends Component {
     constructor(props) {
@@ -7,6 +10,7 @@ export default class SearchBar extends Component {
         this.state = {term: '' };
 
         this.onInputChanges = this.onInputChanges.bind(this); //or bind with callback fat arrow function
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
     onInputChanges(event) {
@@ -16,7 +20,9 @@ export default class SearchBar extends Component {
 
     onFormSubmit(event) {
         event.preventDefault(); //tells browser not to submit form
-        this.setState({});
+        
+        this.props.fetchWeather(this.state.term);
+        this.setState({ term: '' });
     }
 
     render() {
@@ -34,6 +40,12 @@ export default class SearchBar extends Component {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);
 
 
 //https://www.udemy.com/react-redux/learn/v4/t/lecture/4284590?start=0
