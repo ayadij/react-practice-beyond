@@ -4,12 +4,14 @@ export default class SearchBar extends Component {
     constructor(props) {
         super(props);
 
-        this.state= {term: ''};
+        this.state = {term: '' };
+
+        this.onInputChanges = this.onInputChanges.bind(this);
     }
 
     onInputChanges(event) {
-        console.log(event.target.value)
-        this.setState()
+        console.log(event.target.value);
+        this.setState({ term: event.target.value });
     }
 
     render() {
