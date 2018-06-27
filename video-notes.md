@@ -24,6 +24,9 @@ Whenever a components state is changed, the component immediately re renders and
 Redux
 JSX
 WebPack
+AJAX
+Axios
+JQuery
 
 ====================================================================
 
@@ -278,19 +281,12 @@ internal state, external props
 
 ==============================================================
 
-
-
-
-a list is an array of object
+a list is an array of objects
 snapsotsdssdasfdasdfsasdffdsadsfasdf
-
-
-
 
 
 REDUX PROMISE
 npm install --save redux-promise
-
 
 
 
