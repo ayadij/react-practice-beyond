@@ -1,4 +1,4 @@
-REACT NOTES
+# REACT NOTES
 
 How do you tell React to re-render?
 this.setState
@@ -9,10 +9,10 @@ Class vs. Function (??)
 
 
 ====================================================================
-PROPS
+## PROPS
 
 
-STATE
+## STATE
 : plain js object that is used to record and react to user events
 Each class based component that we define has its own state object
 Whenever a components state is changed, the component immediately re renders and also forces all of its children to re render as well
@@ -31,9 +31,6 @@ React Router
 
 
 ====================================================================
-
-
-
 #### Functional component
 
 const SearchBar() = {
@@ -70,9 +67,6 @@ We want the most parent component to be responsible for fetching data
 
 
 ====================================================================
-
-
-
 ## Converting a Function to a Class
 
 - You can convert a functional component like Clock to a class in five steps:
@@ -91,8 +85,6 @@ We want the most parent component to be responsible for fetching data
 
 
 ====================================================================
-
-
 ## BIND
 
 Here is an example of a .bind
@@ -105,8 +97,6 @@ This line is necessary because showModal()'s body contains the word `this`.
 
 
 ====================================================================
-
-
 ## HANDLING EVENTS
 
 just know that in React, whenever you define an event handler that uses this, you need to add this.methodName = this.methodName.bind(this) to your constructor function.
@@ -115,11 +105,9 @@ just know that in React, whenever you define an event handler that uses this, yo
 
 
 ====================================================================
+## 2 types of state: application state and component state
 
-
-2 types of state: application state and component state
-
-###Unidirectional Data Flow: 
+### Unidirectional Data Flow: 
 All data in our applications flow in a single direction. In React it flows down the tree from parent to child. This makes tracking the source and destination easy compared to other architectures where data may be coming from many parts of the application.
 
 ### Application State: 
@@ -130,9 +118,7 @@ This is state that is used to allow a component to function. Local component sta
 
 
 ====================================================================
-
-
-.this
+## .this
 different than even vanilla js
 
 in reference to the instantiated component
@@ -141,7 +127,6 @@ in reference to the instantiated component
 
 
 ====================================================================
-
 
 Redux takes care of APPLICATION STATE which is not the same as state in each component
 formed by reducers
@@ -192,8 +177,9 @@ the first argument is a state
 it returns and object
 whatever object is returned is available to the component as ```this.props```
 
+
 ==============================================================
-ACTIONS AND ACTION CREATORS (udemy)
+## ACTIONS AND ACTION CREATORS (udemy)
 
 call an ACTION CREATER == a function that returns an action
 action is a as an object that flows thru reducers
@@ -223,7 +209,7 @@ that way it is not a string.
 
 
 ==============================================================
-BINDING ACTION CREATORS
+## BINDING ACTION CREATORS
 
 
 ```import { bindActionCreators } from 'redux';```
@@ -262,16 +248,13 @@ export default function(state, action) {
 ```
 
 ==============================================================
-
-COMPONENT --> CONTAINER
+## COMPONENT --> CONTAINER
 container speaks with state
 rely on redux instead of AJAX calls?
 
 
 ==============================================================
-
-
-WHAT IS REACT? 
+## WHAT IS REACT? 
 Officially - js library for building user interfaces
 Unofficially - a js library that makes it really easy to develope responsive web pages
 developed by FB
@@ -287,29 +270,43 @@ a list is an array of objects
 snapsotsdssdasfdasdfsasdffdsadsfasdf
 
 
-REDUX PROMISE
+## REDUX PROMISE
 npm install --save redux-promise
 
 
 
 ==============================================================
-
-SPA
+## SPA
 single page application
 just showing different sets of components instead of entirely different html pages
 
+
 ==============================================================
+## COMPONENTS
+
+rcc - react create class
+
+Component
+- normal component
+
+Pure Component
+- no deep checking
+- getting new props but doesnt rerender 
+- why did you update 
+- prevents unnecessary rerenders
+- micro optomization
 
 
+stateless functional component
+- most common
+- stateless and just a function
+- defining it as a constant function equal to an arrow function
+- doesnt have state or lifecycle methods or any extra stuff
+- returns simple jsx
 
 
-
-
-
-
-
-
-
+<React.Fragment>
+yarn upgrage @babel/core @babel/plugin-transform-react-jsx
 
 
 
