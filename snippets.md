@@ -5,6 +5,7 @@
 
 
 | Prefix | Method |
+ | --- | --- |
 | imp→ | import moduleName from 'module' |
 | imn→ |  import 'module' |
 | imd→ |  import { destructuredModule } from 'module' |
@@ -68,10 +69,13 @@ bnd→  this.methodName = this.methodName.bind(this)
 
 # Redux Methods
 
-rxaction→ redux action template
-rxconst→  export const $1 = '$1'
-rxreducer→  redux reducer template
-rxselect→ redux selector template
+
+Prefix | Method
+ --- | ---
+rxaction→  | redux action template
+rxconst→  | export const $1 = '$1'
+rxreducer→  | redux reducer template
+rxselect→  | redux selector template
 
 
 
