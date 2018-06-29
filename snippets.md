@@ -75,6 +75,43 @@ rxselect→ redux selector template
 
 
 
+---
+
+# Proptypes Methods
+
+pta→  PropTypes.array
+ptar→ PropTypes.array.isRequired
+ptb→  PropTypes.bool
+ptbr→ PropTypes.bool.isRequired
+ptf→  PropTypes.func
+ptfr→ PropTypes.func.isRequired
+ptn→  PropTypes.number
+ptnr→ PropTypes.number.isRequired
+pto→  PropTypes.object
+ptor→ PropTypes.object.isRequired
+pts→  PropTypes.string
+ptsr→ PropTypes.string.isRequired
+ptnd→ PropTypes.node
+ptndr→  PropTypes.node.isRequired
+ptel→ PropTypes.element
+ptelr→  PropTypes.element.isRequired
+pti→  PropTypes.instanceOf(name)
+ptir→ PropTypes.instanceOf(name).isRequired
+pte→  PropTypes.oneOf([name])
+pter→ PropTypes.oneOf([name]).isRequired
+ptet→ PropTypes.oneOfType([name])
+ptetr→  PropTypes.oneOfType([name]).isRequired
+ptao→ PropTypes.arrayOf(name)
+ptaor→  PropTypes.arrayOf(name).isRequired
+ptoo→ PropTypes.objectOf(name)
+ptoor→  PropTypes.objectOf(name).isRequired
+ptsh→ PropTypes.shape({ })
+ptshr→  PropTypes.shape({ }).isRequired
+ptany→  PropTypes.any
+ptypes→ static propTypes = {}
+
+
+
 
 
 
