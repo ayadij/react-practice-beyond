@@ -330,6 +330,11 @@ cmmb
 
 
 
+Supported languages (file extensions)
+- JavaScript (.js)
+- JavaScript React (.jsx)
+- TypeScript (.ts)
+- TypeScript React (.tsx)
 
 
 
