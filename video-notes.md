@@ -306,8 +306,10 @@ stateless functional component
 
 
 <React.Fragment>
+<> 
 yarn upgrage @babel/core @babel/plugin-transform-react-jsx
-
+</>
+</React.Fragment>
 
 
 
