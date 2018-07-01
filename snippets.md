@@ -1,20 +1,26 @@
 
 ---
 
+*es7 react/redux/graphql/react-native snippets by dsznajder*
+
+https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
+
+---
+
 # Basic Methods
 
 
 | Prefix | Method |
  --- | --- 
-| imp→ | import moduleName from 'module' |
-| imn→ |  import 'module' |
-| imd→ |  import { destructuredModule } from 'module' |
-| ime→ |  import * as alias from 'module' |
-| ima→ |  import { originalName as aliasName} from 'module' |
-| exp→ |  export default moduleName |
-| exd→ |  export { destructuredModule } from 'module' |
-| exa→ |  export { originalName as aliasName} from 'module' |
-| enf→ |  export const functionName = (params) => { } |
+imp→ | import moduleName from 'module' 
+imn→ |  import 'module' 
+imd→ |  import { destructuredModule } from 'module' 
+ime→ |  import * as alias from 'module' 
+ima→ |  import { originalName as aliasName} from 'module' 
+exp→ |  export default moduleName 
+exd→ |  export { destructuredModule } from 'module' 
+exa→ |  export { originalName as aliasName} from 'module' 
+enf→ |  export const functionName = (params) => { } 
 edf→  |  export default (params) => { }
 met→  |  methodName = (params) => { }
 fre→  |  arrayName.forEach(element => { }
@@ -338,7 +344,7 @@ Supported languages (file extensions)
 
 
 
-
+---
 
 
 
