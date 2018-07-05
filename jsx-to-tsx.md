@@ -15,4 +15,4 @@
   - are any of the props required?
   - are any of the props not being used in the code at all?
   - are any of the props appearing in the code but never declared or passed thru
-
+- infer types of newly added props
