@@ -16,3 +16,7 @@
   - are any of the props not being used in the code at all?
   - are any of the props appearing in the code but never declared or passed thru
 - infer types of newly added props
+
+`PropTypes` are not the authority on what props are actually being used.
+`PropTypes` are a good starting point, but in reality it only matters what props are actually being used
+`<Search>` was being passed a `buttonClick` prop that wasn’t in `PropTypes`
