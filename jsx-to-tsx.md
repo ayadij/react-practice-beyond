@@ -17,6 +17,8 @@
   - are any of the props appearing in the code but never declared or passed thru
 - infer types of newly added props
 
-`PropTypes` are not the authority on what props are actually being used.
-`PropTypes` are a good starting point, but in reality it only matters what props are actually being used
-`<Search>` was being passed a `buttonClick` prop that wasn’t in `PropTypes`
+- `PropTypes` are not the authority on what props are actually being used.
+- `PropTypes` are a good starting point, but in reality it only matters what props are actually being used
+- `<Search>` was being passed a `buttonClick` prop that wasn’t in `PropTypes`
+- unnecessary prop? best way to know is find an example and see what happens if you don’t pass it in at the call site
+- another step we need to add to this process is `npm run build`
