@@ -22,3 +22,10 @@
 - `<Search>` was being passed a `buttonClick` prop that wasn’t in `PropTypes`
 - unnecessary prop? best way to know is find an example and see what happens if you don’t pass it in at the call site
 - another step we need to add to this process is `npm run build`
+
+
+- before pushing
+  - npm run build
+  - npm run test
+  - npm runstart (local host)
+
