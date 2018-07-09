@@ -1,6 +1,8 @@
 - replace .jsx with .tsx
 - * as React from 'react';
 - add type Props = {}; type State = {}
+- make states Readonly
+  - ex: type State = Readonly<{ editing: boolean; value: string; }>;
 - declare types (ex: string, number, boolean, any, () => void)
 - take out PropTypes
 - take out Constructors
@@ -22,7 +24,7 @@
 - `<Search>` was being passed a `buttonClick` prop that wasn’t in `PropTypes`
 - unnecessary prop? best way to know is find an example and see what happens if you don’t pass it in at the call site
 - another step we need to add to this process is `npm run build`
-
+- make all of the States rea
 
 - before pushing
   - npm run build
