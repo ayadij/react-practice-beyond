@@ -1,7 +1,7 @@
 
   - npm run build
   - npm run test
-  - npm runstart (local host)
+  - npm run start (local host)
 
 ---
 
