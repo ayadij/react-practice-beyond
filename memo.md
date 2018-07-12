@@ -33,3 +33,8 @@ git merge master
 git commit -m "merge master merge conflicts"
 git push origin branch-name
 
+
+
+
+unstage:
+git reset --soft HEAD^
