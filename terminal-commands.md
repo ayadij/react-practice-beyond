@@ -30,6 +30,11 @@ _make changes_
 
 `git push origin branch-name`
 
+---
+
+### delete local branch
+
+`git branch -d branch-name`
 
 ---
 
@@ -49,5 +54,23 @@ _make changes_
 
 ---
 
+### revert
+
+`git log`
+
+`git reset soft 149871048127098471208741029873018doiwueh2983u`
+
+`git `
+
+https://backlog.com/git-tutorial/stepup/stepup1_1.html
+
+---
+
 
 ssh-add -K ~/.ssh/id_rsa
+
+
+
+
+
+https://gitlab.sendoutcards.com/SendOutCards/soc-front/merge_requests/479
