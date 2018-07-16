@@ -5,7 +5,7 @@
 
 `npm run build`
 
-
+'npm install'
 ---
 
 ### branch off of a branch
