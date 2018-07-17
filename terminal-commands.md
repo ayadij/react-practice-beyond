@@ -6,6 +6,7 @@
 `npm run build`
 
 'npm install'
+
 ---
 
 ### branch off of a branch
@@ -70,7 +71,23 @@ https://backlog.com/git-tutorial/stepup/stepup1_1.html
 ssh-add -K ~/.ssh/id_rsa
 
 
+---
 
 
 
-https://gitlab.sendoutcards.com/SendOutCards/soc-front/merge_requests/479
+---
+
+
+
+---
+
+
+
+---
+
+
+
+---
+
+
+
