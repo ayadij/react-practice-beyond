@@ -11,3 +11,6 @@
 - CMS
 - wagtail to react api
 - jango
+
+### beginner guide for GIT
+- https://backlog.com/git-tutorial/stepup/stepup1_1.html
