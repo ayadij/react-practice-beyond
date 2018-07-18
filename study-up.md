@@ -14,3 +14,6 @@
 
 ### beginner guide for GIT
 - https://backlog.com/git-tutorial/stepup/stepup1_1.html
+
+### dont have to parse thru data getting passed in from graphql
+dangerouslysetinnerhtml
