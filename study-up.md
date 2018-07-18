@@ -8,6 +8,7 @@
 
 ### topics
 - Wagtail
+  - content manager system
 - CMS
 - wagtail to react api
 - jango
@@ -22,3 +23,7 @@ dangerouslysetinnerhtml
 Docker CE for Mac is an easy-to-install desktop app for building, debugging, and testing Dockerized apps on a Mac. Docker for Mac is a complete development environment deeply integrated with the Mac OS Hypervisor framework, networking, and filesystem. Docker for Mac is the fastest and most reliable way to run Docker on a Mac.
 - ayadij
 - H2
+
+### axios
+-heavily inspired by the $http service provided in Angular. Ultimately axios is an effort to provide a standalone $http-like service for use outside of Angular.
+
