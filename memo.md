@@ -101,3 +101,86 @@ class CardPanelView extends React.Component<Props, State> {
 }
 
 export default CardPanelView;
+
+
+
+
+------------------
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import Poster from '../components/Poster';
+import Player from '../components/Player';
+import VideoRibbon from '../components/VideoRibbon';
+import styles from '../styles/components/videoPlayer.scss';
+
+class VideoPlayer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stagedVideo: null,
+      playerSrc: ''
+    };
+  }
+
+  handleChangeVideo = source => {
+    console.log(source);
+    this.setState({
+      playerSrc: source
+    });
+  };
+
+  handleStageVideo = video => {
+    console.log(video);
+    this.setState({
+      stagedVideo: video,
+      playerSrc: null
+    });
+  };
+
+  componentWillMount() {
+    if (this.props.videos) {
+      this.setState({
+        stagedVideo: this.props.videos[0]
+      });
+    }
+  }
+
+  render() {
+    return (
+      <div className={styles.videoHeroWrapper}>
+        <div className={styles.videoPlayerHeader}>
+          {!this.state.playerSrc && (
+            <Poster
+              poster={this.state.stagedVideo.poster}
+              copy={this.state.stagedVideo.copy}
+              actionTitle={this.state.stagedVideo.actionTitle}
+              onPlay={this.handleChangeVideo}
+              playerSource={this.state.stagedVideo.src}
+            />
+          )}
+          {this.state.playerSrc && <Player src={this.state.playerSrc} />}
+        </div>
+        <VideoRibbon
+          videos={this.props.videos}
+          onPlay={this.handleStageVideo}
+        />
+      </div>
+    );
+  }
+}
+
+VideoPlayer.propTypes = {
+  title: PropTypes.string,
+  video: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    duration: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    posterContent: PropTypes.string.isRequired,
+    actionTitle: PropTypes.string.isRequired
+  })
+};
+
+export default VideoPlayer;
