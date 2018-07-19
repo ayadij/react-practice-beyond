@@ -12,7 +12,9 @@
   - https://wagtail.io/
 
 ### CMS
+
 ### Wagtail to react api
+
 ### Django
 
 ### beginner guide for GIT
