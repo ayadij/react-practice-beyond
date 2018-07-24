@@ -720,3 +720,62 @@ class Player extends React.Component<Props, {}> {
 
 export default Player;
 
+
+
+
+
+
+
+
+LinkItem.tsx -----------------------------------------------------
+import * as React from 'react';
+import { SuggestedLink } from '../types';
+import { ICONS } from '../../app/constants';
+import Icon from '../../chrome/components/Icon';
+import styles from '../styles/components/suggestedLinks.scss';
+
+type Props = {
+  linkItem: SuggestedLink;
+};
+
+class LinkItem extends React.Component<Props, {}> {
+  render() {
+    const { title, link_external, link_class, document } = this.props.linkItem;
+    return (
+      <div className={styles.linkItem}>
+        <div className={styles.linkIcon}>
+          <Icon
+            icon={
+              link_external
+                ? ICONS.CAMPAIGN
+                : link_class
+                  ? ICONS.STAR
+                  : document
+                    ? ICONS.DOCUMENT
+                    : ICONS.DOCUMENT
+            }
+          />
+        </div>
+        <div className={styles.linkTitle}>
+          <a
+            href={
+              link_external
+                ? link_external
+                : link_class
+                  ? link_class
+                  : document
+                    ? document
+                    : ''
+            }
+          >
+            {title}
+          </a>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default LinkItem;
+
+
