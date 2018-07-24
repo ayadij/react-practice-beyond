@@ -439,23 +439,28 @@ export default CardPanelView;
 
 
 
-------------------
-
-import React from 'react';
-import PropTypes from 'prop-types';
-import Poster from '../components/Poster';
-import Player from '../components/Player';
-import VideoRibbon from '../components/VideoRibbon';
+VideoPlayer.tsx ------------------
+import * as React from 'react';
+import { Video } from '../types';
+import Poster from './Poster';
+import Player from './Player';
+import Playlist from './Playlist';
 import styles from '../styles/components/videoPlayer.scss';
 
-class VideoPlayer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      stagedVideo: null,
-      playerSrc: ''
-    };
-  }
+type Props = {
+  video: Video;
+};
+
+type State = Readonly<{
+  stagedVideo?: any; //
+  playerSrc?: string;
+}>;
+
+class VideoPlayer extends React.Component<Props, State> {
+  state = {
+    stagedVideo: undefined,
+    playerSrc: ''
+  };
 
   handleChangeVideo = source => {
     console.log(source);
@@ -468,54 +473,38 @@ class VideoPlayer extends React.Component {
     console.log(video);
     this.setState({
       stagedVideo: video,
-      playerSrc: null
+      playerSrc: undefined
     });
   };
 
   componentWillMount() {
-    if (this.props.videos) {
+    if (this.props.video) {
       this.setState({
-        stagedVideo: this.props.videos[0]
+        stagedVideo: this.props.video[0]
       });
     }
   }
 
   render() {
+    const imagePrefix = 'http://localhost:8001';
     return (
       <div className={styles.videoHeroWrapper}>
         <div className={styles.videoPlayerHeader}>
           {!this.state.playerSrc && (
             <Poster
-              poster={this.state.stagedVideo.poster}
-              copy={this.state.stagedVideo.copy}
-              actionTitle={this.state.stagedVideo.actionTitle}
+              poster={`${imagePrefix}${this.state.stagedVideo.poster}`}
+              actionTitle={this.props.video.actionTitle}
               onPlay={this.handleChangeVideo}
-              playerSource={this.state.stagedVideo.src}
+              playerSource={this.props.video.videoSrc}
             />
           )}
           {this.state.playerSrc && <Player src={this.state.playerSrc} />}
         </div>
-        <VideoRibbon
-          videos={this.props.videos}
-          onPlay={this.handleStageVideo}
-        />
+        <Playlist videos={this.props.video} onPlay={this.handleStageVideo} />
       </div>
     );
   }
 }
-
-VideoPlayer.propTypes = {
-  title: PropTypes.string,
-  video: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    duration: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    posterContent: PropTypes.string.isRequired,
-    actionTitle: PropTypes.string.isRequired
-  })
-};
 
 export default VideoPlayer;
 
