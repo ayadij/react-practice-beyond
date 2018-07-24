@@ -518,3 +518,205 @@ VideoPlayer.propTypes = {
 };
 
 export default VideoPlayer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Orders > ReturnAddress.tsx -----------------------------------------
+import * as React from 'react';
+import AddressForm from '../../contacts/components/AddressForm';
+import Blinker from '../../chrome/components/Blinker';
+import Button from '../../chrome/components/Button';
+import tileStyles from '../../chrome/styles/detailView.scss';
+import styles from '../styles/returnAddrForm.scss';
+
+type tileStyles = {
+  previewSections?: string;
+  overviewCard?: string;
+};
+
+type Props = {
+  onSave: (address: any) => void;
+  blinker?: boolean;
+  order?: any;
+  toggleAddressBlinker?: any;
+  tileStyles?: tileStyles;
+};
+
+type State = Readonly<{
+  editing: boolean;
+  address: any;
+}>;
+
+class ReturnAddress extends React.Component<Props, State> {
+  address = {
+    firstName: '',
+    lastName: '',
+    address1: '',
+    address2: '',
+    company: '',
+    city: '',
+    state: '',
+    country: 'United States',
+    postalCode: ''
+  };
+
+  state = {
+    editing:
+      !this.props.order.returnAddress ||
+      !this.props.order.returnAddress.address1,
+    address: this.props.order.returnAddress || this.address
+  };
+
+  handleContextChange = () => {
+    this.setState({
+      editing: !this.state.editing
+    });
+  };
+
+  handleChange = event => {
+    this.setState({
+      address: {
+        ...this.state.address,
+        [event.target.name]: event.target.value
+      }
+    });
+  };
+
+  handleCountryChange = value => {
+    this.setState({
+      address: {
+        ...this.state.address,
+        country: value
+      }
+    });
+  };
+
+  handleSave = () => {
+    this.props.onSave(this.state.address);
+    this.setState({ editing: false });
+  };
+
+  render() {
+    const address = this.state.address;
+    return (
+      <section
+        className={`${tileStyles.previewSection} ${tileStyles.overviewCard}`}
+        style={{ marginTop: 0, justifyContent: 'left' }}
+      >
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <h6>Return Address</h6>
+            {this.props.blinker && (
+              <Blinker
+                style={{ bottom: 7 }}
+                messagePosition={{
+                  position: 'absolute',
+                  top: -95,
+                  right: 85
+                }}
+                message={'Please make sure you have a return address'}
+              />
+            )}
+            {!this.props.order.isSent && (
+              <div className={styles.actions}>
+                <Button
+                  title={this.state.editing ? 'Cancel' : 'Edit'}
+                  gradient={'pink'}
+                  style={{ marginRight: 15 }}
+                  onClick={this.handleContextChange}
+                  id={'edit_or_cancel_return_address_btn'}
+                />
+              </div>
+            )}
+          </div>
+          {this.state.editing ? (
+            <AddressForm
+              toggleAddressBlinker={this.props.toggleAddressBlinker}
+              contact={address}
+              onChange={this.handleChange}
+              onCountryChange={this.handleCountryChange}
+              shippingAddress={true}
+              onSubmit={this.handleSave}
+            />
+          ) : (
+            <div className={styles.addressPreview}>
+              <span>
+                {address.firstName} {address.lastName}
+              </span>
+              <span>{address.company}</span>
+              <span>{address.address1}</span>
+              <span>{address.address2}</span>
+              <span>
+                {address.city}, {address.state} {address.postalCode}
+              </span>
+              <span>{address.country}</span>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+}
+
+export default ReturnAddress;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Player.tsx -----------------------------------------------------
+import * as React from 'react';
+import { Video } from '../types';
+import styles from '../styles/components/videoPlayer.scss';
+
+type Props = {
+  video: Video;
+};
+
+class Player extends React.Component<Props, {}> {
+  render() {
+    const { posterTitle, videoSrc } = this.props.video;
+    return (
+      <div className={styles.player}>
+        <iframe
+          title={posterTitle}
+          src={videoSrc}
+          width="620"
+          height="349"
+          allowFullScreen
+        />
+      </div>
+    );
+  }
+}
+
+export default Player;
+
