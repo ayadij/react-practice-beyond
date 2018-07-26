@@ -68,11 +68,22 @@ https://backlog.com/git-tutorial/stepup/stepup1_1.html
 ---
 
 
-ssh-add -K ~/.ssh/id_rsa
+`ssh-add -K ~/.ssh/id_rsa`
 
 
 ---
 
+### docker
+
+`docker-compose up -d`
+
+`docker-compose down`
+
+`docker-compose build web`
+
+`docker-compose run web python manage.py migrate`
+
+`docker-compose run web python manage.py createsuperuser`
 
 
 ---
