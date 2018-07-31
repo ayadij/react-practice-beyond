@@ -1,11 +1,10 @@
 
-Hey there,
+The "slots" pattern is also useful for passing props through multiple levels, and can help you avoid having to reach for more complex things like Context or Redux just to get your data where it needs to be.
 
-If you've ever needed to pass multiple children to a React component, but wanted more control over their layout (i.e., not all bunched together), give today's post a read.
+Perfect for if you ever need to pass multiple children to a React component, but want more control over the layout (ie, not all bunched together).
 
-This "slots" pattern is also useful for passing props through multiple levels, and can help you avoid having to reach for more complex things like Context or Redux just to get your data where it needs to be.
+Yes, React allows you to pass children to a component by nesting them inside its JSX tag. These elements/'children', however, just wont cut it every time.
 
-Read it here: Pass Multiple Children to a React Component with Slots
+These cases are easy to accomplish with the SLOTS pattern... aka passing JSX into a prop.
 
-Cheers,
-Dave
+https://daveceddia.com/pluggable-slots-in-react-components/?utm_campaign=0731slots
