@@ -768,3 +768,83 @@ class LinkItem extends React.Component<Props, {}> {
 export default LinkItem;
 
 
+
+
+
+
+FORM MODAL -----------------------------------------------------------------------
+import * as React from 'react';
+import Dialog from 'material-ui/Dialog';
+
+import Button from '../../chrome/components/GradientButton';
+import buttonStyles from '../../chrome/styles/gradientButtons.scss';
+import styles from '../styles/createOrderModal.scss';
+
+type Props = {
+  open: boolean;
+  close: any;
+  onSubmit: any;
+  title: string;
+};
+
+type State = Readonly<{
+}>;
+
+class FormModal extends React.Component<Props, State> {
+  state = {
+    ...initialState
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+  };
+
+  render() {
+    return (
+      <Dialog
+        modal={false}
+        open={this.props.open}
+        onRequestClose={this.props.close}
+        autoScrollBodyContent={true}
+      >
+        <div className={styles.delayForm}>
+          <form onSubmit={this.props.onSubmit} className={styles.formContainer}>
+            <div className={`${styles.flex} ${styles.modalHeader}`}>
+              <h6>{this.props.title}</h6>
+            </div>
+            <div className={styles.formFields} style={{ padding: '20px 0' }}>
+              {this.props.children}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                title="Cancel"
+                onClick={this.props.close}
+                style={{ marginRight: '15px' }}
+              />
+              <button
+                type="submit"
+                className={`${buttonStyles.gradientButton} ${
+                  buttonStyles.pink
+                }`}
+                style={{
+                  width: '125px',
+                  height: '29px'
+                }}
+              >
+                <span style={{ margin: '0 auto' }}>Submit</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </Dialog>
+    );
+  }
+}
+
+export default FormModal;
