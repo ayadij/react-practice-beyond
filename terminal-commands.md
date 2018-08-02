@@ -65,6 +65,7 @@ _make changes_
 
 https://backlog.com/git-tutorial/stepup/stepup1_1.html
 
+
 ---
 
 
@@ -88,6 +89,15 @@ https://backlog.com/git-tutorial/stepup/stepup1_1.html
 
 ---
 
+### pull then push with rebase
+
+`git add .`
+
+`git commit -m “commit message”`
+
+`git pull —rebase origin branch-name`
+
+`git push origin branch-name -f`
 
 
 ---
