@@ -848,3 +848,574 @@ class FormModal extends React.Component<Props, State> {
 }
 
 export default FormModal;
+
+
+
+
+FORM MODAL tsx ============================================= errors
+import * as React from 'react';
+import Dialog from 'material-ui/Dialog';
+
+import Button from '../../chrome/components/GradientButton';
+import buttonStyles from '../../chrome/styles/gradientButtons.scss';
+import styles from '../styles/createOrderModal.scss';
+
+type Props = {
+  open: boolean;
+  close: any;
+  onSubmit: any;
+  title: string;
+};
+
+type State = Readonly<{}>;
+
+class FormModal extends React.Component<Props, State> {
+  state = {
+    ...initialState
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+  };
+
+  render() {
+    return (
+      <Dialog
+        modal={false}
+        open={this.props.open}
+        onRequestClose={this.props.close}
+        autoScrollBodyContent={true}
+      >
+        <div className={styles.delayForm}>
+          <form onSubmit={this.props.onSubmit} className={styles.formContainer}>
+            <div className={`${styles.flex} ${styles.modalHeader}`}>
+              <h6>{this.props.title}</h6>
+            </div>
+            <div className={styles.formFields} style={{ padding: '20px 0' }}>
+              {this.props.children}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                title="Cancel"
+                onClick={this.props.close}
+                style={{ marginRight: '15px' }}
+              />
+              <button
+                type="submit"
+                className={`${buttonStyles.gradientButton} ${
+                  buttonStyles.pink
+                }`}
+                style={{
+                  width: '125px',
+                  height: '29px'
+                }}
+              >
+                <span style={{ margin: '0 auto' }}>Submit</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </Dialog>
+    );
+  }
+}
+
+export default FormModal;
+
+
+
+ProjectDrawer====================================== TSX
+import * as React from 'react';
+import Drawer from 'material-ui/Drawer';
+import { List, ListItem } from 'material-ui/List';
+import MenuItem from 'material-ui/MenuItem';
+
+import Icon from '../../chrome/components/Icon';
+import { ICONS } from '../../app/constants';
+import GradientButton from '../../chrome/components/GradientButton';
+import { months, days } from '../../app/dates';
+import {
+  SendDelay,
+  typeCode,
+  updateDelay
+} from '../../orders/sendDelayOptions';
+import styles from '../styles/projectDetail.scss';
+import { SelectField } from 'material-ui';
+import { getPaperTypes } from '../../app/constants';
+
+const paperTypes = {
+  STD: 'Standard',
+  PRE: 'Pearl',
+  HVY: 'Satin'
+};
+const listStyle = {
+  padding: '1px 0px',
+  border: '1px solid #d5d5d5',
+  borderLeft: 0,
+  borderRight: 0,
+  fontSize: 13,
+  fontWeight: 'bold'
+};
+const listHeaderStyle = {
+  fontSize: 16,
+  fontFamily: '"Open Sans", sans-serif',
+  color: '#757575',
+  fontWeight: 500
+};
+const listItemStyle = active => {
+  return {
+    fontSize: 14,
+    fontFamily: '"Open Sans", sans-serif',
+    color: active ? '#f669b5' : '#757575',
+    fontWeight: active ? 'bold' : 300
+  };
+};
+
+type Props = {
+  chooseDate: boolean;
+  line: any; //object
+  projectId: string;
+  onAddGift: any;
+  onClose: any;
+  onRemoveLine: any;
+  onRemoveGift: any;
+  onUpdateDate: any;
+  onUpdateLine: any;
+  onUpdatePaperType: any;
+  onUpdateSendDelay: any;
+  openSendDelayModal: any; //
+};
+
+type State = Readonly<{
+  paper: boolean;
+  gift: boolean;
+  delayMonth: any;
+  delayDay: any;
+  sendDelay: boolean; //
+  card: any; //
+}>;
+
+class ProjectDrawer extends React.Component<Props, State> {
+  state = {
+    paper: false,
+    gift: true,
+    delayMonth: undefined,
+    delayDay: undefined,
+    sendDelay: false, //true
+    card: undefined //
+  };
+
+  componentWillMount() {
+    const { month, day } = SendDelay.monthDayDefaults(
+      this.props.line.sendDelay
+    );
+  }
+  componentDidMount() {
+    this.setState({ sendDelay: this.props.chooseDate });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ sendDelay: nextProps.chooseDate });
+    if (this.props.line.sendDelay.type !== nextProps.line.sendDelay.type) {
+      const { month, day } = SendDelay.monthDayDefaults(
+        nextProps.line.sendDelay
+      );
+      this.setState({ delayMonth: month, delayDay: day });
+    }
+  }
+
+  handleDateSelect = (name, event, index, value) => {
+    this.setState({
+      [name]: value
+    });
+  };
+
+  toggleSection = type => {
+    this.setState({
+      [type]: !this.state[type]
+    });
+  };
+
+  render() {
+    const line = this.props.line;
+    return (
+      <Drawer
+        open={true}
+        className={styles.projectDrawer}
+        containerClassName={styles.drawerInner}
+      >
+        <div className={styles.drawerContents}>
+          <div className={styles.drawerHeader}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <h1 className={styles.title}>
+                Card:{' '}
+                {line.card.sendableCard
+                  ? line.card.sendableCard.title
+                  : 'Custom Card'}
+              </h1>
+              <span onClick={this.props.onClose} style={{ paddingRight: 15 }}>
+                <Icon icon={ICONS.CLOSE} color={'#AFAFAF'} size={18} />
+              </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div
+                className={styles.cardThumbnail}
+                style={{
+                  backgroundImage: `url(${line.card.frontPreviewUrl})`,
+                  width: line.card.isHorizontal ? 70 : 50,
+                  height: line.card.isHorizontal ? 50 : 70
+                }}
+              />
+              <span
+                onClick={() => this.props.onUpdateLine('edit', line.card.id)}
+                style={{ paddingRight: 15 }}
+              >
+                <Icon icon={ICONS.EDIT} color={'#ff5689'} size={18} />
+                <span style={{ marginLeft: 5 }}>Edit Card</span>
+              </span>
+            </div>
+          </div>
+          <div className={styles.details}>
+            <h1 className={styles.subTitle}>
+              <span onClick={() => this.toggleSection('sendDelay')}>
+                <Icon
+                  icon={ICONS.CALENDAR}
+                  color={'#AFAFAF'}
+                  size={18}
+                  viewBox={'0 0 32 32'}
+                />
+              </span>
+              {SendDelay.shortDescription(line.sendDelay)}
+            </h1>
+            {line.giftVariation && (
+              <h1 className={styles.subTitle}>
+                <span onClick={() => this.toggleSection('gift')}>
+                  <Icon icon={ICONS.BAG} color={'#AFAFAF'} size={18} />
+                </span>
+                Gift: {line.giftVariation.price.description}
+              </h1>
+            )}
+            <h1 className={styles.subTitle}>
+              <span onClick={() => this.toggleSection('paper')}>
+                <Icon icon={ICONS.FLATCARD} color={'#AFAFAF'} size={18} />
+              </span>
+              Card Type:&nbsp;<span style={{ fontWeight: 'bold' }}>
+                {line.card.type}
+              </span>
+            </h1>
+            <h1 className={styles.subTitle} style={{ marginLeft: 25 }}>
+              Paper Type:&nbsp;<span style={{ fontWeight: 'bold' }}>
+                {paperTypes[line.card.paperType]}
+              </span>
+            </h1>
+          </div>
+          <List style={listStyle}>
+            <ListItem
+              primaryText={
+                <div style={{ display: 'flex' }}>
+                  <div>Send Delay</div>
+                  <div className={styles.sendDelayInfo}>
+                    <Icon icon={ICONS.INFO} size={15} color={'#afafaf'} />
+                    <span className={styles.sendDelayTooltip}>
+                      <p>
+                        Cards with an anniversary or birthday delay are
+                        scheduled to print and send 7 days before the scheduled
+                        date.
+                      </p>
+                    </span>
+                  </div>
+                </div>
+              }
+              open={this.state.sendDelay}
+              onNestedListToggle={() => this.toggleSection('sendDelay')}
+              primaryTogglesNestedList={true}
+              innerDivStyle={listHeaderStyle}
+              nestedItems={[
+                <ListItem
+                  key={1}
+                  primaryText="Arrive on Birthday"
+                  onClick={() =>
+                    this.props.onUpdateSendDelay(
+                      updateDelay(typeCode.BIR),
+                      typeCode.BIR
+                    )
+                  }
+                  innerDivStyle={listItemStyle(
+                    line.sendDelay.type === typeCode.BIR
+                  )}
+                />,
+                <ListItem
+                  key={2}
+                  primaryText="Arrive on Anniversary"
+                  onClick={() =>
+                    this.props.onUpdateSendDelay(
+                      updateDelay(typeCode.ANN),
+                      typeCode.ANN
+                    )
+                  }
+                  innerDivStyle={listItemStyle(
+                    line.sendDelay.type === typeCode.ANN
+                  )}
+                />,
+                <ListItem
+                  key={3}
+                  primaryText="Send Immediately"
+                  onClick={() =>
+                    this.props.onUpdateSendDelay(
+                      updateDelay(typeCode.IMM),
+                      typeCode.IMM
+                    )
+                  }
+                  innerDivStyle={listItemStyle(
+                    line.sendDelay.type === typeCode.IMM &&
+                      line.sendDelay.delayNumber === 0
+                  )}
+                />,
+                <ListItem
+                  key={4}
+                  primaryText={
+                    <div style={{ display: 'flex' }}>
+                      <div>
+                        {line.sendDelay.type === typeCode.SPE
+                          ? `Specific Date: ${SendDelay.ribbonDescription(
+                              line.sendDelay
+                            )}`
+                          : 'Send on Specific Date'}
+                      </div>
+                      <div className={styles.sendDelayInfo}>
+                        <Icon icon={ICONS.INFO} size={15} color={'#afafaf'} />
+                        <span
+                          className={styles.sendDelayTooltip}
+                          style={{
+                            right: '-100px',
+                            color: 'rgb(117, 117, 117)'
+                          }}
+                        >
+                          <p>
+                            Reminder: If the date you choose has already passed,
+                            the card(s) will send on that date next year.
+                          </p>
+                        </span>
+                      </div>
+                    </div>
+                  }
+                  primaryTogglesNestedList={true}
+                  innerDivStyle={listItemStyle(
+                    line.sendDelay.type === typeCode.SPE
+                  )}
+                  nestedItems={[
+                    <ListItem key={1}>
+                      <SelectField
+                        required
+                        floatingLabelText="Month"
+                        fullWidth={true}
+                        value={this.state.delayMonth}
+                        onChange={this.handleDateSelect.bind(
+                          null,
+                          'delayMonth'
+                        )}
+                        name="month"
+                        maxHeight={200}
+                        labelStyle={{ fontWeight: 400 }}
+                        floatingLabelStyle={{ fontWeight: 400 }}
+                        style={{ width: '50%' }}
+                      >
+                        {months &&
+                          months.map((month, index) => {
+                            return (
+                              <MenuItem
+                                key={index}
+                                value={month === null ? null : index}
+                                primaryText={month}
+                              />
+                            );
+                          })}
+                      </SelectField>
+                      <SelectField
+                        required
+                        floatingLabelText="Day"
+                        fullWidth={true}
+                        value={this.state.delayDay}
+                        onChange={this.handleDateSelect.bind(null, 'delayDay')}
+                        name="day"
+                        maxHeight={200}
+                        labelStyle={{ fontWeight: 400 }}
+                        floatingLabelStyle={{ fontWeight: 400 }}
+                        style={{ width: '30%', marginLeft: 10 }}
+                      >
+                        {days &&
+                          days.map((day, index) => {
+                            return (
+                              <MenuItem
+                                key={index}
+                                value={day === null ? null : index}
+                                primaryText={day}
+                              />
+                            );
+                          })}
+                      </SelectField>
+                      <GradientButton
+                        title="Submit"
+                        onClick={() =>
+                          this.props.onUpdateDate(
+                            this.state.delayMonth,
+                            this.state.delayDay
+                          )
+                        }
+                        style={{ width: 70 }}
+                      />
+                    </ListItem>
+                  ]}
+                />,
+                <ListItem
+                  key={5}
+                  primaryText="Advanced Options"
+                  onClick={this.props.openSendDelayModal}
+                  innerDivStyle={listItemStyle(
+                    line.sendDelay.type === typeCode.IMM &&
+                      line.sendDelay.delayNumber > 0
+                  )}
+                />
+              ]}
+            />
+          </List>
+          <List style={listStyle}>
+            <ListItem
+              primaryText={'Paper Options'}
+              primaryTogglesNestedList={true}
+              open={this.state.card}
+              onNestedListToggle={() => this.toggleSection('paper')}
+              innerDivStyle={listHeaderStyle}
+              nestedItems={[
+                <ListItem
+                  key={1}
+                  primaryTogglesNestedList={true}
+                  primaryText={
+                    <div>
+                      Paper Type:&nbsp;
+                      <span style={{ fontWeight: 'bold' }}>
+                        {paperTypes[line.card.paperType]}
+                      </span>
+                    </div>
+                  }
+                  innerDivStyle={listItemStyle(false)}
+                  nestedItems={getPaperTypes(line.card.type).map(
+                    (type, index) => {
+                      return (
+                        <ListItem
+                          key={index}
+                          primaryText={type.label}
+                          onClick={() =>
+                            this.props.onUpdatePaperType(type.value)
+                          }
+                          innerDivStyle={listItemStyle(
+                            line.card.paperType === type.value
+                          )}
+                        />
+                      );
+                    }
+                  )}
+                />
+              ]}
+            />
+          </List>
+          {line.card &&
+            line.card.type !== 'POSTCARD' && (
+              <List style={listStyle}>
+                <ListItem
+                  primaryText={'Gift'}
+                  initiallyOpen={true}
+                  open={this.state.gift}
+                  onNestedListToggle={() => this.toggleSection('gift')}
+                  primaryTogglesNestedList={true}
+                  innerDivStyle={listHeaderStyle}
+                  nestedItems={[
+                    <ListItem key={1}>
+                      <div className={styles.gift}>
+                        {line.giftVariation ? (
+                          <div>
+                            <div
+                              className={styles.giftImage}
+                              style={{
+                                backgroundImage: `url(${
+                                  line.giftVariation.defaultImageUrl
+                                }`
+                              }}
+                            />
+                            <div className={styles.giftDescription}>
+                              <div className={styles.giftTitle}>
+                                <h5>{line.giftVariation.name}</h5>
+                              </div>
+                              <div className={styles.giftPrice}>
+                                <h5>{line.giftVariation.price.description}</h5>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className={styles.addGift}>
+                            <h2 style={{ marginBottom: '12px' }}>
+                              Add a gift?
+                            </h2>
+                            <GradientButton
+                              title="Yes Please"
+                              style={{ margin: 'auto' }}
+                              onClick={this.props.onAddGift}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </ListItem>,
+                    <ListItem
+                      key={2}
+                      primaryText={
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
+                        >
+                          <Icon
+                            icon={ICONS.TRASH}
+                            color={'#afafaf'}
+                            size={20}
+                          />
+                          Remove Gift
+                        </div>
+                      }
+                      style={!line.giftVariation ? { display: 'none' } : {}}
+                      onClick={this.props.onRemoveGift}
+                    />
+                  ]}
+                />
+              </List>
+            )}
+        </div>
+        <div className={styles.drawerActions}>
+          <div className={styles.actionButtons}>
+            <GradientButton
+              title={'Replace Card'}
+              gradient={'pink'}
+              style={{ width: 150, marginRight: '15px' }}
+              onClick={() => this.props.onUpdateLine('replace')}
+            />
+            <GradientButton
+              title={'Delete Card'}
+              style={{ width: 150 }}
+              onClick={() => this.props.onRemoveLine(line)}
+            />
+          </div>
+        </div>
+      </Drawer>
+    );
+  }
+}
+
+export default ProjectDrawer;
+
