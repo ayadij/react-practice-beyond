@@ -102,7 +102,9 @@ https://backlog.com/git-tutorial/stepup/stepup1_1.html
 
 ---
 
+### revert back one commit
 
+`git reset --hard HEAD~1`
 
 ---
 
