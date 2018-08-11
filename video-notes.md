@@ -29,6 +29,8 @@ Axios
 JQuery
 React Router
 Wagtail
+Apollo
+MobX
 
 
 ==================================================================
