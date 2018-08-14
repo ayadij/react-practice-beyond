@@ -399,7 +399,39 @@ Docker CE for Mac is an easy-to-install desktop app for building, debugging, and
 
 
 
+=============================================================
 
+### Wikipedia 
+##### simple discription
+
+React (JavaScript library)
+From Wikipedia, the free encyclopedia
+
+React
+
+Original author:	Jordan Walke
+
+Developers:	Facebook and community
+
+Initial release:	March 2013; 5 years ago
+
+Repository: https://github.com/facebook/react
+
+Written in	JavaScript
+
+Platform:	Cross-platform
+
+Size:	109 KiB production, 710 KiB development
+
+Type:	JavaScript library
+
+License:	MIT License
+
+Website:	reactjs.org
+
+
+In computing, React (also known as React.js or ReactJS) is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.
+React can be used as a base in the development of single-page or mobile applications. Complex React applications usually require the use of additional libraries for state management, routing, and interaction with an API.
 
 
 
